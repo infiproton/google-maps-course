@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bay Coffee Roasters",
+    "address": "1 Ferry Building, San Francisco, CA 94111, USA"
+  },
+  {
+    "name": "Golden Gate Bookstore",
+    "address": "1234 Grant Ave, San Francisco, CA 94133, USA"
+  },
+  {
+    "name": "Union Square Electronics",
+    "address": "333 Post St, San Francisco, CA 94108, USA"
+  },
+  {
+    "name": "Mission Fresh Market",
+    "address": "2590 Mission St, San Francisco, CA 94110, USA"
+  },
+  {
+    "name": "Ocean View Sports Gear",
+    "address": "2000 Great Hwy, San Francisco, CA 94116, USA"
+  },
+  {
+    "name": "Sunset Music Store",
+    "address": "1930 Irving St, San Francisco, CA 94122, USA"
+  },
+  {
+    "name": "Downtown Bike Rentals",
+    "address": "745 Howard St, San Francisco, CA 94103, USA"
+  },
+  {
+    "name": "Fisherman's Wharf Souvenirs",
+    "address": "2801 Leavenworth St, San Francisco, CA 94133, USA"
+  },
+  {
+    "name": "Castro Village Boutique",
+    "address": "525 Castro St, San Francisco, CA 94114, USA"
+  },
+  {
+    "name": "North Beach Gelato",
+    "address": "1707 Powell St, San Francisco, CA 94133, USA"
+  },
+  {
+    "name": "Golden Bean Coffee",
+    "address": "315 Market St, San Francisco, CA 94105"
+  },
+  {
+    "name": "Sunset Bookstore",
+    "address": "1500 Irving St, San Francisco, CA 94122"
+  },
+  {
+    "name": "Bay Sports Outlet",
+    "address": "789 Mission St, San Francisco, CA 94103"
+  },
+  {
+    "name": "Ocean Fresh Grocery",
+    "address": "1201 Taraval St, San Francisco, CA 94116"
+  },
+  {
+    "name": "North Beach Pizza",
+    "address": "1462 Grant Ave, San Francisco, CA 94133"
+  }
+]

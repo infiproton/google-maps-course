@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pagination - Nearby Search</title>
+    <style>
+        #controls {
+            padding: 10px;
+            text-align: center;
+        }
+        .place-btn {
+            margin: 5px;
+            padding: 10px 18px;
+            border-radius: 20px;
+            border: none;
+            background-color: #e3e3e3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .place-btn:hover {
+            background-color: #d0d0d0;
+        }
+        .place-btn.active {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #map {
+            height: 80vh;
+            width: 60%;
+        }
+        #sidebar {
+            width: 40%;
+            height: 80vh;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .place-card {
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+        }
+        #nextPageBtn {
+            margin: 10px 0;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="controls">
+        Search Nearby: 
+      <button class="place-btn" data-type="restaurant" onclick="searchNearby('restaurant')">Restaurants</button>
+      <button class="place-btn" data-type="cafe" onclick="searchNearby('cafe')">Cafes</button>
+      <button class="place-btn" data-type="atm" onclick="searchNearby('atm')">ATMs</button>
+      <button class="place-btn" data-type="bank" onclick="searchNearby('bank')">Banks</button>
+    </div>
+    
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h2>Nearby Results</h2>
+        <div id="placesList"></div>
+        <button id="nextPageBtn">Next Page</button>        
+      </div>
+    </div>
+
+    <script>
+        let map;
+        let markers = [];
+        let pagination = null;
+
+        async function initMap() {
+            const sf = { lat: 37.77497, lng: -122.423673 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 14
+            });
+        }
+
+        function searchNearby(placeType) {
+            
+            const service = new google.maps.places.PlacesService(map);
+            const request = {
+                location: map.getCenter(),
+                radius: '5000', // in meters
+                type: placeType
+            }
+
+            service.nearbySearch(request, (results, status, page) => {
+                clearMarkers();
+
+                results.forEach((place) => {
+                    const marker = new google.maps.Marker({
+                        map,
+                        position: place.geometry.location,
+                        title: place.name,
+                    });
+                    markers.push(marker);
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `<h3>${place.name}</h3><br>${place.vicinity}`,
+                    });
+                    marker.addListener("click", () => {
+                        infoWindow.open(map, marker);
+                    });
+
+                    // Add to results list
+                    const div = document.createElement("div");
+                    div.classList.add("place-card");
+                    div.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity || ""}`;
+                    document.getElementById("placesList").appendChild(div);
+                });
+                pagination = page;
+            })
+        }
+
+        function clearMarkers() {
+            markers.forEach((marker) => marker.setMap(null));
+            markers = [];
+            document.getElementById("placesList").innerHTML = "";
+        }
+
+        document.getElementById("nextPageBtn").addEventListener("click", () => {
+            if(pagination && pagination.hasNextPage) {
+                pagination.nextPage();
+            }
+        });
+
+
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

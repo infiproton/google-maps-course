@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drag and Change Route</title>
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+            flex: 2
+        }
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #directions-panel {
+            flex: 1;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            background: #f9f9f9;
+            height: 80vh;
+            padding:15px; 
+        }
+        #details {
+            padding:10px;
+            margin:10px;
+        }
+        #controls {
+            padding: 10px;
+            margin:5px;
+        }
+    </style>
+  </head>
+  <body>    
+    <div id="controls">
+        <label for="mode">Travel Mode:</label>
+        <select id="mode">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+        <button id="reset">Reset</button>
+    </div>
+    <div id="details"></div>
+
+    <div id="container">
+        <div id="map"></div>
+        <div id="directions-panel"></div>
+    </div>
+    
+    <script>
+        let map;
+        let origin = null, destination = null;
+        let directionsService, directionsRenderer;
+        let markers = [];
+
+        async function initMap() {
+            const sf = { lat: 37.77497, lng: -122.423673 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 13
+            });
+
+            // Initialize the directions service and renderer
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                panel: document.getElementById("directions-panel"),
+                draggable: true
+            });
+            directionsRenderer.setMap(map);
+
+            map.addListener('click', (e) => {
+                if(!origin) {
+                    origin = e.latLng;
+                    addMarker(e.latLng);
+                } else if(!destination) {
+                    destination = e.latLng;
+                    addMarker(e.latLng);
+                    displayRoute();
+                }
+            });
+
+            document.getElementById("mode").addEventListener("change", () => {
+                if (origin && destination) {
+                    displayRoute();
+                }
+            });
+
+            document.getElementById("reset").addEventListener("click", resetMap);  
+
+            google.maps.event.addListener(directionsRenderer, 'directions_changed', () => {
+                const updated = directionsRenderer.getDirections();
+                const route = updated.routes[0].legs[0];
+                const details = `
+                    <div>Distance: <b>${route.distance.text}</b></div>
+                    <div>Duration: <b>${route.duration.text}</b></div>
+                `;
+                document.getElementById("details").innerHTML = details;
+            });
+
+        }
+
+        function displayRoute() {
+            const selectedMode = document.getElementById("mode").value;
+            const request = {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode[selectedMode]
+            }
+            directionsService.route(request, (result, status) => {
+                directionsRenderer.setDirections(result);
+                const route = result.routes[0].legs[0];
+                const details = `
+                    <div>Distance: <b>${route.distance.text}</b></div>
+                    <div>Duration: <b>${route.duration.text}</b></div>
+                `;
+                document.getElementById("details").innerHTML = details;
+                
+            })
+        }
+
+        function addMarker(position) {
+            const marker = new google.maps.Marker({position, map});
+            markers.push(marker);
+        }
+
+        function resetMap() {
+            origin = null;
+            destination = null;
+            directionsRenderer.setDirections({ routes: [] });
+
+            for (const marker of markers) {
+                marker.setMap(null);
+            }
+            markers = [];
+            document.getElementById("directions-panel").innerHTML = "";
+        }
+
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

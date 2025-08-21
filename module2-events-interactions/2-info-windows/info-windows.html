@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Info Windows</title>
+    <style>
+        #map {
+            height: 100vh; 
+            width: 100%; 
+        }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            const sf = { lat: 37.7749, lng: -122.4194 }; // San Francisco
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 10
+            });
+
+            const infowindow = new google.maps.InfoWindow();
+            map.addListener("click", (event) => {
+                const coords = event.latLng;
+                const content = `
+                    <div>
+                        <h4>Map Clicked</h4>
+                        <p>Lat: ${coords.lat()} <br/>Lng: ${coords.lng()}</p>
+                        </div>`;
+                infowindow.setContent(content);
+                infowindow.setPosition(coords);
+                infowindow.open(map);
+            });
+
+            const goldenGate = {lat: 37.8192498066908, lng: -122.47849543073588 };
+            const marker = new google.maps.Marker({
+                position: goldenGate,
+                map,
+                title: "Hello Golden Gate!",
+            });
+
+            const markerContent = `
+            <div style="font-family: Arial;">
+                <h3>Golden Gate Bridge</h3>
+                <p>The famous suspension bridge!</p>
+            </div>
+            `;
+            const markerInfoWindow = new google.maps.InfoWindow({
+                content: markerContent,
+            });
+
+            marker.addListener("click", () => {
+                markerInfoWindow.open({
+                    anchor: marker,
+                    map: map
+                });
+            });
+
+            
+        }
+    </script>
+
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>

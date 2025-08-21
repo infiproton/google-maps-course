@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Polygons</title>
+    <style>
+        #map {
+            height: 100vh; 
+            width: 100%; 
+        }
+        #finish {
+            margin: 10px;
+            padding: 8px 16px;
+        }
+    </style>
+  </head>
+  <body>
+    <button id="finish">Finish Polygon</button>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            const sf = { lat: 37.7749, lng: -122.4194 }; // San Francisco
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 12
+            });
+
+            let polygonCoords = [];
+            map.addListener("click", (event) => {
+                const coord = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+                console.log(polygonCoords)
+                polygonCoords.push(coord);
+            });
+
+            document.getElementById("finish").addEventListener("click", () => {
+                if(polygonCoords.length < 3) {
+                    alert("Atleast 3 points is required to draw a polygon");
+                    return;
+                }
+                new google.maps.Polygon({
+                    paths: polygonCoords,
+                    map: map,
+                    strokeColor: '#FF0000',
+                    fillColor: '#0000ff'
+                });
+                polygonCoords = [];
+            });
+
+
+
+            
+        }
+    </script>
+
+
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather API</title>
+    <style>
+        #map {
+            height: 100vh; /* full height */
+            width: 100%; /* full width */
+        }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+        const weatherApiKey = "b686f8b1e87349559e9140605250308";
+
+        function initMap() {
+            const india = { lat: 22.76780, lng: 79.29351 }; // India
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: india,
+                zoom: 4
+            });
+            let marker = null;
+            let infowindow = new google.maps.InfoWindow();
+
+            async function fetchWeather(lat, lng) {
+                const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${lat},${lng}&aqi=no`;
+                const res = await fetch(url);
+                const data = await res.json();
+
+                const weather = data.current;
+                const location = data.location;
+
+                const html = `
+                    <div style="text-align:center;">
+                    <img src="${weather.condition.icon}" alt="icon" />
+                    <div><b>${weather.temp_c}°C</b> - ${weather.condition.text}</div>
+                    <h3>${data.location.region}, ${data.location.country}</h3>
+                    </div>
+                `;
+                infowindow.setContent(html);
+                infowindow.open(map, marker);
+            }
+            
+            map.addListener("click", (e) => {
+                const lat = e.latLng.lat();
+                const lng = e.latLng.lng();
+                if(marker) marker.setMap(null);
+                
+                marker = new google.maps.Marker({
+                    position: { lat, lng },
+                    map: map,
+                });
+
+                fetchWeather(lat, lng);
+            });
+
+        }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>

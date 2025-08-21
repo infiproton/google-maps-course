@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Golden Gate Bridge",
+    "lat": 37.8199,
+    "lng": -122.4783
+  },
+  {
+    "name": "Statue of Liberty",
+    "lat": 40.6892,
+    "lng": -74.0445
+  },
+  {
+    "name": "Eiffel Tower",
+    "lat": 48.8584,
+    "lng": 2.2945
+  },
+  {
+    "name": "Gateway of India",
+    "lat": 18.921984,
+    "lng": 72.834654
+  },
+  {
+    "name": "Tokyo Tower",
+    "lat": 35.6586,
+    "lng": 139.7454
+  }
+]

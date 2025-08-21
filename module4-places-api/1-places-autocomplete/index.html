@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Places API</title>
+    <style>
+        #map {
+            height: 90vh; 
+            width: 100%; 
+        }
+        #search-box {
+            width: 500px;
+            margin: 10px;
+            padding: 8px;
+        }
+    </style>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+  </head>
+  <body>
+    <input id="search-box" type="text" placeholder="Search places..." />
+    <div id="map"></div>
+    <script>
+        
+        async function initMap() {
+            const india = { lat: 22.76780, lng: 79.29351 }; // India
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: india,
+                zoom: 5
+            });
+
+            const marker = new google.maps.Marker({
+                map: map,
+                position: india,
+            });
+
+            const searchBox = document.getElementById("search-box");
+            const autocomplete = new google.maps.places.Autocomplete(searchBox);
+
+            autocomplete.addListener('place_changed', () => {
+                const place = autocomplete.getPlace();
+                const location = place.geometry.location;
+
+                map.setCenter(location);
+                map.setZoom(12);
+                marker.setPosition(location);
+            })
+
+        }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

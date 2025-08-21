@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reverse Geocoding</title>
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+        }
+        #info {
+            margin: 10px;
+            font-family: Arial, sans-serif;
+            padding: 8px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+    </style>
+  </head>
+  <body>    
+    <div id="info">Click anywhere on the map to get the address.</div>
+    <div id="map"></div>
+    
+    <script>
+        let map;
+        let geocoder;
+        let marker;
+
+        async function initMap() {
+            const sf = { lat: 37.7751310, lng: -122.4158246 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 13
+            });
+
+            geocoder = new google.maps.Geocoder();
+
+            map.addListener("click", (event) => {
+                const clickedLatLng = event.latLng
+
+                if(marker) marker.setMap(null);
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: clickedLatLng
+                });
+
+                geocoder.geocode({location: clickedLatLng}, (results, status) => {
+                    if (status === "OK") {
+                        const entry = results[0];
+
+                        const content = "Address: " + entry.formatted_address;
+                        document.getElementById("info").innerHTML = content;
+
+                    } else {
+                        alert("No results found")
+                    }
+                })
+            });
+
+       }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

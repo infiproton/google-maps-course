@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Stops with Waypoints</title>
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+            flex: 2
+        }
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #directions-panel {
+            flex: 1;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            background: #f9f9f9;
+            height: 80vh;
+            padding:15px; 
+        }
+        #details {
+            padding:10px;
+            margin:10px;
+        }
+        #controls {
+            padding: 10px;
+            margin:5px;
+        }
+    </style>
+  </head>
+  <body>    
+    <div id="container">
+        <div id="map"></div>
+        <div id="directions-panel"></div>
+    </div>
+    
+    <script>
+        let map;
+        let directionsService, directionsRenderer;
+
+        async function initMap() {
+            const india = { lat: 21.446430, lng: 78.071196 }; // India
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: india,
+                zoom: 6
+            });
+
+            // Initialize the directions service and renderer
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                panel: document.getElementById("directions-panel"),
+                draggable: true
+            });
+            directionsRenderer.setMap(map);
+
+            // TODO: Generate Route with Waypoints
+            const origin = "Bangalore, IN";
+            const destination = "Chennai, IN";
+            const waypoints = [
+                { location: "Tirupati, IN", stopover: true },
+                { location: "Krishnagiri, IN", stopover: true }
+            ]
+
+            const request = {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING,
+                waypoints: waypoints,
+                optimizeWaypoints: true
+            }
+            directionsService.route(request, (result, status) => {
+                directionsRenderer.setDirections(result);
+            }); 
+
+        }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

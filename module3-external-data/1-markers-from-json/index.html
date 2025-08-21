@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Markers from JSON</title>
+    <style>
+        #map {
+            height: 100vh; /* full height */
+            width: 100%; /* full width */
+        }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+            function initMap() {
+                const sf = { lat: 37.7749, lng: -122.4194 }; 
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    center: sf,
+                    zoom: 3
+                });
+
+                const infowindow = new google.maps.InfoWindow();
+
+                fetch("data/locations.json")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(loc => {
+                        const marker = new google.maps.Marker({
+                            position: { lat: loc.lat, lng: loc.lng },
+                            map,
+                            title: loc.name
+                        });
+
+                        marker.addListener("click", () => {
+                            infowindow.setContent(loc.name);
+                            infowindow.open(map, marker);
+                        });
+                    })
+                })
+                .catch(error => console.error("Failed to load JSON: " + error));
+
+
+            }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+
+    </body>
+</html>

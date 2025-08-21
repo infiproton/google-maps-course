@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clustering Markers</title>
+    <style>
+        #map {
+            height: 100vh; /* full height */
+            width: 100%; /* full width */
+        }
+    </style>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+        // Download cities from: https://simplemaps.com/data/world-cities
+
+        function initMap() {
+            const india = { lat: 22.76780, lng: 79.29351 }; // India
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: india,
+                zoom: 4
+            });
+
+            const markers = [];
+
+            fetch("data/cities.json")
+            .then(res => res.json())
+            .then(cities => {
+                cities.forEach(city => {
+                    markers.push(new google.maps.Marker({
+                        position: { lat: city.lat, lng: city.lng },
+                        map: map,
+                        title: city.city
+                    }));
+                });
+
+                new markerClusterer.MarkerClusterer({map, markers})
+
+            })
+        
+        }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>

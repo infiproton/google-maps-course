@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forward Geocoding</title>
+    <style>
+        #map {
+            height: 80vh;
+            width: 100%;
+        }
+        #search-container {
+            margin: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+    </style>
+  </head>
+  <body>    
+    <div id="search-container">
+        <input id="address" type="text" placeholder="Enter an address">
+        <button id="find-btn">Find Location</button>
+    </div>
+    <div id="map"></div>
+    
+    <script>
+        let map;
+        let geocoder;
+        let marker;
+
+        async function initMap() {
+            const india = { lat: 21.446430, lng: 78.071196 }; // India
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: india,
+                zoom: 5
+            });
+
+            geocoder = new google.maps.Geocoder();
+
+            document.getElementById("find-btn").addEventListener("click", () => {
+                geocodeTheAddress();
+            });
+        }
+
+        function geocodeTheAddress() {
+            const address = document.getElementById("address").value;
+
+            geocoder.geocode({address: address}, (results, status) => {
+                if(status === "OK") {
+                    const entry = results[0];
+                    const location = entry.geometry.location;
+
+                    map.setCenter(location);
+                    map.setZoom(15);
+
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                    const infowindow = new google.maps.InfoWindow({
+                        content: `<strong>${entry.formatted_address}</strong>`
+                    });
+                    infowindow.open(map, marker);
+                } else if(status === "ZERO_RESULTS") {
+                    alert("No results found for the entered address")
+                }
+            
+            })
+        }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=places"></script>
+    </body>
+</html>

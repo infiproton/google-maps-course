@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map Events</title>
+    <style>
+        #map {
+            height: 80vh; 
+            width: 100%; 
+        }
+    </style>
+  </head>
+  <body>
+    <div id="info"></div>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            const sf = { lat: 37.7749, lng: -122.4194 }; // San Francisco
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 10
+            });
+
+            let marker = null;
+            map.addListener("click", (e) => {
+                const lat = e.latLng.lat();
+                const lng = e.latLng.lng();
+                document.getElementById("info").textContent = "Clicked at: " + lat +", " + lng
+
+                if (marker) marker.setMap(null);
+                marker = new google.maps.Marker({
+                    position: { lat, lng},
+                    map: map
+                });
+            });
+
+            // zoom event
+            map.addListener("zoom_changed", () => {
+                document.getElementById("info").textContent = "Zoom level " + map.getZoom();
+            });
+
+            // drag events
+            map.addListener("dragstart", () => {
+                document.getElementById("info").textContent = "Dragging started...";
+            });
+            map.addListener("dragend", () => {
+                document.getElementById("info").textContent = "Dragging ended...";
+            });
+        }
+    </script>
+
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>

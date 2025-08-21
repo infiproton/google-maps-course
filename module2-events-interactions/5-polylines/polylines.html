@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Polylines </title>
+    <style>
+        #map {
+            height: 90vh; 
+            width: 100%; 
+        }
+        #finish {
+            margin: 10px;
+            padding: 8px 16px;
+        }
+    </style>
+  </head>
+  <body>
+    <button id="finish">Finish Path</button>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            const sf = { lat: 37.7749, lng: -122.4194 }; // San Francisco
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 3
+            });
+
+            let routeCoords = [];
+            map.addListener("click", (event) => {
+                const coord = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+                routeCoords.push(coord);
+            });
+            document.getElementById("finish").addEventListener("click", () => {
+                if(routeCoords.length < 2) {
+                    alert("Atleast 2 points is required to draw a line");
+                    return;
+                }
+                new google.maps.Polyline({
+                    path: routeCoords,
+                    geodesic: true, 
+                    map:map,
+                    strokeColor: "#FF0000",
+                });
+                routeCoords = [];
+            });
+            
+            
+        }
+    </script>
+
+
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap"></script>
+    </body>
+</html>
