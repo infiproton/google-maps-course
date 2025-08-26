@@ -5,166 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="HaFb-P5-LTD1K9zSMqpIsSw5rrUDyWgeE_bZKJC5mM0" />
 
-    <title>Google Maps API Examples & Tutorials – Learn with Real Demos</title>
-    <meta name="description" content="Explore interactive Google Maps API examples, including markers, clustering, directions, geocoding, and more. Learn step by step with live demos from the Google Maps for Developers course.">
+    <title>Google Maps for Developers Course - Learn Professional Mapping Applications</title>
+    <meta name="description" content="Master the Google Maps JavaScript API with our comprehensive course. Build real-world mapping applications with markers, directions, geocoding, and data visualization. Perfect for developers of all levels.">
 
+    <!-- Common Styles -->
+    <link rel="stylesheet" href="styles/common.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .module-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .module-title {
-            color: #667eea;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .examples-list {
-            list-style: none;
-        }
-
-        .examples-list li {
-            margin-bottom: 12px;
-        }
-
-        .examples-list a {
-            display: block;
-            padding: 10px 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .examples-list a:hover {
-            background: #667eea;
-            color: white;
-            border-left-color: #764ba2;
-            transform: translateX(5px);
-        }
-
-        .example-number {
-            font-weight: bold;
-            color: #667eea;
-            margin-right: 8px;
-        }
-
-        .examples-list a:hover .example-number {
-            color: white;
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-        }
-
-                .button {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-        background-color: #45a049;
-        }
-    </style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Google Maps API Examples and Tutorials",
-  "description": "Live demos of the Google Maps JavaScript API including markers, clustering, directions, and geocoding.",
-  "author": {
-    "@type": "Person",
-    "name": "Harish BN"
-  },
-  "publisher": {
+  "@type": "Course",
+  "name": "Google Maps for Developers",
+  "description": "Comprehensive course on Google Maps JavaScript API for building professional mapping applications",
+  "provider": {
     "@type": "Organization",
     "name": "Infiproton"
+  },
+  "instructor": {
+    "@type": "Person",
+    "name": "Harish BN"
   },
   "url": "https://infiproton.github.io/google-maps-course/"
 }
@@ -174,151 +33,183 @@
 <body>
     <div class="container">
         <div class="header">
-<h1>🗺️ Google Maps API Examples and Tutorials</h1>
-<p>
-This page showcases interactive <strong>Google Maps JavaScript API</strong> examples. 
-Explore live demos including markers, clustering, geocoding, directions, and 
-data visualization. These are part of the <a href="google-maps.html">Google Maps for Developers course</a>, 
-where you’ll learn how to build real-world mapping applications step by step.
-</p>
-
-            <br/>
-
-            <h2>Learn Google Maps for Developers</h2>
-            <p>
-            Want to go beyond examples? Check out the full
-            <a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB">Google Maps for Developers course</a> 
-            with structured lessons, projects, and step-by-step guidance.
-            <br/>
+            <h1>🗺️ Google Maps for Developers</h1>
+            <p class="subtitle">Master Professional Mapping Applications</p>
+            <p class="description">
+                Learn to build powerful, interactive mapping applications using the Google Maps JavaScript API.
+                From basic maps to advanced features like real-time data visualization, directions, and geocoding.
             </p>
 
-        </div>
-
-        <div class="modules-grid">
-            <!-- Module 1: Getting Started -->
-            <div class="module-card">
-                <h2 class="module-title">📚 Module 1: Getting Started</h2>
-                <ul class="examples-list">
-                    <li><a href="module1-getting-started/1-hello-world/index.html">
-                        <span class="example-number">1.1</span>Hello World - Basic Map
-                    </a></li>
-                    <li><a href="module1-getting-started/2-add-marker/index.html">
-                        <span class="example-number">1.2</span>Add Marker - Simple Point Markers
-                    </a></li>
-                    <li><a href="module1-getting-started/3-custommize-marker/index.html">
-                        <span class="example-number">1.3</span>Customize Marker - Animations & Icons
-                    </a></li>
-                </ul>
-            </div>
-
-            <!-- Module 2: Events & Interactions -->
-            <div class="module-card">
-                <h2 class="module-title">🖱️ Module 2: Events & Interactions</h2>
-                <ul class="examples-list">
-                    <li><a href="module2-events-interactions/1-map-events/index.html">
-                        <span class="example-number">2.1</span>Map Events - Click & Interaction
-                    </a></li>
-                    <li><a href="module2-events-interactions/2-info-windows/info-windows.html">
-                        <span class="example-number">2.2</span>Info Windows - Popup Information
-                    </a></li>
-                    <li><a href="module2-events-interactions/3-basic-shapes/basic-shapes.html">
-                        <span class="example-number">2.3</span>Basic Shapes - Circles & Rectangles
-                    </a></li>
-                    <li><a href="module2-events-interactions/4-polygons/polygons.html">
-                        <span class="example-number">2.4</span>Polygons - Custom Area Shapes
-                    </a></li>
-                    <li><a href="module2-events-interactions/5-polylines/polylines.html">
-                        <span class="example-number">2.5</span>Polylines - Paths & Routes
-                    </a></li>
-                </ul>
-            </div>
-
-            <!-- Module 3: External Data -->
-            <div class="module-card">
-                <h2 class="module-title">📊 Module 3: External Data</h2>
-                <ul class="examples-list">
-                    <li><a href="module3-external-data/1-markers-from-json/index.html">
-                        <span class="example-number">3.1</span>Markers from JSON - Data Loading
-                    </a></li>
-                    <li><a href="module3-external-data/2-geo-json/index.html">
-                        <span class="example-number">3.2</span>GeoJSON - Geographic Boundaries
-                    </a></li>
-                    <li><a href="module3-external-data/3-weather-api/index.html">
-                        <span class="example-number">3.3</span>Weather API - Real-time Data
-                    </a></li>
-                    <li><a href="module3-external-data/4-clustering-markers/index.html">
-                        <span class="example-number">3.4</span>Clustering Markers - Performance
-                    </a></li>
-                </ul>
-            </div>
-
-            <!-- Module 4: Places API -->
-            <div class="module-card">
-                <h2 class="module-title">🔍 Module 4: Places API</h2>
-                <ul class="examples-list">
-                    <li><a href="module4-places-api/1-places-autocomplete/index.html">
-                        <span class="example-number">4.1</span>Places Autocomplete - Search Box
-                    </a></li>
-                    <li><a href="module4-places-api/2-place-details/index.html">
-                        <span class="example-number">4.2</span>Place Details - Rich Information
-                    </a></li>
-                    <li><a href="module4-places-api/3-search-nearby-places/index.html">
-                        <span class="example-number">4.3</span>Nearby Search - Local Places
-                    </a></li>
-                    <li><a href="module4-places-api/4-pagination-search-places/index.html">
-                        <span class="example-number">4.4</span>Pagination Search - Advanced Results
-                    </a></li>
-                </ul>
-            </div>
-
-            <!-- Module 5: Directions API -->
-            <div class="module-card">
-                <h2 class="module-title">🧭 Module 5: Directions API</h2>
-                <ul class="examples-list">
-                    <li><a href="module5-directions-api/1-directions-intro/index.html">
-                        <span class="example-number">5.1</span>Directions Intro - Basic Routing
-                    </a></li>
-                    <li><a href="module5-directions-api/2-interactive-directions/index.html">
-                        <span class="example-number">5.2</span>Interactive Directions - User Input
-                    </a></li>
-                    <li><a href="module5-directions-api/3-step-by-step-directions/index.html">
-                        <span class="example-number">5.3</span>Step-by-Step Directions - Detailed Routes
-                    </a></li>
-                    <li><a href="module5-directions-api/4-draggable-route-change/index.html">
-                        <span class="example-number">5.4</span>Draggable Route Change - Interactive Paths
-                    </a></li>
-                    <li><a href="module5-directions-api/5-multiple-stops-waypoints/index.html">
-                        <span class="example-number">5.5</span>Multiple Stops & Waypoints - Complex Routes
-                    </a></li>
-                </ul>
-            </div>
-
-            <!-- Module 6: Geocoding API -->
-            <div class="module-card">
-                <h2 class="module-title">📍 Module 6: Geocoding API</h2>
-                <ul class="examples-list">
-                    <li><a href="module6-geocoding-api/2-forward-geocoding/index.html">
-                        <span class="example-number">6.1</span>Forward Geocoding: Addresses to Coordinates
-                    </a></li>
-                    <li><a href="module6-geocoding-api/3-reverse-geocoding/index.html">
-                        <span class="example-number">6.2</span>Reverse Geocoding: Coordinates to Addresses
-                    </a></li>
-                    <li><a href="module6-geocoding-api/4-batch-geocoding/index.html">
-                        <span class="example-number">6.3</span>Batch Geocoding Multiple Addresses
-                    </a></li>
-                </ul>
+            <div class="cta-buttons">
+                <a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB" class="btn-primary">
+                    🚀 Enroll Now
+                </a>
+                <a href="examples.html" class="btn-secondary">
+                    👀 View Live Examples
+                </a>
             </div>
         </div>
 
-        <div class="footer">
-            <p>🚀 Interactive Google Maps JavaScript API Learning Examples</p>
-            <p>From basic maps to advanced features with external data integration</p>
-            <br/>
-            <p><a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB" target="_blank" class="button">
-                🚀 Enroll Now </a>
+        <!-- Course Overview -->
+        <div class="content-section">
+            <h2 class="section-title">What You'll Learn</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3 class="feature-title">Interactive Maps</h3>
+                    <p>Create beautiful, responsive maps with custom styling, markers, and user interactions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3 class="feature-title">Places & Geocoding</h3>
+                    <p>Integrate location search, autocomplete, and convert addresses to coordinates</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧭</div>
+                    <h3 class="feature-title">Directions & Routes</h3>
+                    <p>Build route planning features with turn-by-turn directions and waypoints</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Data Visualization</h3>
+                    <p>Display external data, create heatmaps, and build interactive dashboards</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Performance</h3>
+                    <p>Optimize maps for speed with clustering, lazy loading, and best practices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Mobile Ready</h3>
+                    <p>Create responsive mapping applications that work perfectly on all devices</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Modules -->
+        <div class="content-section">
+            <h2 class="section-title">Course Modules</h2>
+            <div class="modules-overview">
+                <div class="module-overview">
+                    <h3>📚 Module 1: Getting Started</h3>
+                    <ul>
+                        <li>Setting up Google Maps API</li>
+                        <li>Creating your first map</li>
+                        <li>Adding and customizing markers</li>
+                        <li>Map styling and themes</li>
+                    </ul>
+                </div>
+                <div class="module-overview">
+                    <h3>🖱️ Module 2: Events & Interactions</h3>
+                    <ul>
+                        <li>Handling map events</li>
+                        <li>Info windows and popups</li>
+                        <li>Drawing shapes and polygons</li>
+                        <li>User interaction patterns</li>
+                    </ul>
+                </div>
+                <div class="module-overview">
+                    <h3>📊 Module 3: External Data</h3>
+                    <ul>
+                        <li>Loading data from JSON/APIs</li>
+                        <li>Working with GeoJSON</li>
+                        <li>Real-time data integration</li>
+                        <li>Marker clustering for performance</li>
+                    </ul>
+                </div>
+                <div class="module-overview">
+                    <h3>🔍 Module 4: Places API</h3>
+                    <ul>
+                        <li>Places autocomplete search</li>
+                        <li>Place details and reviews</li>
+                        <li>Nearby places search</li>
+                        <li>Advanced search filtering</li>
+                    </ul>
+                </div>
+                <div class="module-overview">
+                    <h3>🧭 Module 5: Directions API</h3>
+                    <ul>
+                        <li>Route calculation and display</li>
+                        <li>Interactive directions interface</li>
+                        <li>Multiple stops and waypoints</li>
+                        <li>Alternative routes and options</li>
+                    </ul>
+                </div>
+                <div class="module-overview">
+                    <h3>📍 Module 6: Geocoding API</h3>
+                    <ul>
+                        <li>Address to coordinates conversion</li>
+                        <li>Reverse geocoding</li>
+                        <li>Batch geocoding optimization</li>
+                        <li>Error handling and validation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Stats -->
+        <div class="content-section">
+            <h2 class="section-title">Course Highlights</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Hands-on Examples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Comprehensive Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Practical Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Lifetime Access</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructor Section -->
+        <div class="content-section">
+            <h2 class="section-title">About Your Instructor</h2>
+            <div class="instructor-section">
+                <div class="instructor-avatar">
+                    <div style="width: 200px; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <span style="font-size: 4rem; color: white;">👨‍💻</span>
+                    </div>
+                </div>
+                <div class="instructor-info">
+                    <h3>Harish BN</h3>
+                    <div class="instructor-bio">
+                        <p>Experienced developer and instructor specializing in mapping technologies and web development.
+                        With years of experience building real-world applications using Google Maps API, Harish brings
+                        practical insights and industry best practices to help you master mapping development.</p>
+
+                        <p style="margin-top: 20px;">This course is designed to take you from beginner to advanced,
+                        with each module building upon the previous one to ensure you gain comprehensive understanding
+                        of the Google Maps ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="content-section final-cta">
+            <h2 style="color: white; border-bottom: 3px solid white; margin-bottom: 25px; padding-bottom: 15px;">Ready to Start Building?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">
+                Join thousands of developers who have already mastered Google Maps API
             </p>
-            <br/><br/><br/><br/>
+            <div class="cta-buttons">
+                <a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB" class="btn-primary">
+                    🚀 Start Learning Today
+                </a>
+                <a href="examples.html" class="btn-secondary">
+                    👀 Explore Examples First
+                </a>
+            </div>
         </div>
     </div>
 </body>
-</html> 
+</html>

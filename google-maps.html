@@ -3,302 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Maps JavaScript API Course – Learn Google Maps for Developers</title>
+    <title>Redirecting to Examples - Google Maps Course</title>
+    <meta name="description" content="This page has moved to examples.html - Redirecting automatically">
 
-    <meta name="description" content="Learn the Google Maps JavaScript API with hands-on projects. Build apps using markers, clustering, geocoding, directions, and data visualization. Enroll today with 50% discount.">
+    <!-- Immediate redirect -->
+    <meta http-equiv="refresh" content="0; url=examples.html">
+
+    <!-- JavaScript redirect as backup -->
+    <script>
+        window.location.replace("examples.html");
+    </script>
+
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href="examples.html">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            text-align: center;
+            padding: 50px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .module-card {
-            background: white;
+        .redirect-message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
             border-radius: 15px;
-            padding: 25px;
+            backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        .redirect-message h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
         }
-
-        .module-title {
-            color: #667eea;
-            font-size: 1.5rem;
+        .redirect-message p {
             margin-bottom: 15px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
+            font-size: 1.1rem;
         }
-
-        .examples-list {
-            list-style: none;
-        }
-
-        .examples-list li {
-            margin-bottom: 12px;
-        }
-
-        .examples-list a {
-            display: block;
-            padding: 10px 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
+        .redirect-message a {
+            color: #4CAF50;
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .examples-list a:hover {
-            background: #667eea;
-            color: white;
-            border-left-color: #764ba2;
-            transform: translateX(5px);
-        }
-
-        .example-number {
             font-weight: bold;
-            color: #667eea;
-            margin-right: 8px;
-        }
-
-        .examples-list a:hover .example-number {
-            color: white;
-        }
-
-        .content {
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
-            opacity: 0.8;
-        }
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-        }
-
-        .button {
+            padding: 10px 20px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
             display: inline-block;
-            padding: 15px 30px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
-
-        .button:hover {
-        background-color: #45a049;
+        .redirect-message a:hover {
+            background: rgba(76, 175, 80, 0.3);
+            text-decoration: underline;
         }
-
-        
     </style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "name": "Google Maps for Developers – Complete Guide",
-  "description": "Learn the Google Maps JavaScript API with real-world projects. From markers and directions to clustering and heatmaps, this course helps developers build interactive map applications.",
-  "url": "https://infiproton.github.io/google-maps-course/course.html",
-  "inLanguage": "en",
-  "educationalCredentialAwarded": "Certificate of Completion",
-  "provider": {
-    "@type": "Organization",
-    "name": "Udemy",
-    "sameAs": "https://www.udemy.com/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Harish BN"
-  },
-  "hasCourseInstance": {
-    "@type": "CourseInstance",
-    "name": "Google Maps for Developers – Online Self-Paced Course",
-    "courseMode": "online",
-    "url": "https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB",
-    "location": {
-      "@type": "VirtualLocation",
-      "url": "https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB"
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB",
-      "price": "9.99",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    }
-  },
-    "image": "https://infiproton.github.io/google-maps-course/images/google-maps-course-promo.jpg"
-
-}
-</script>
-
-
-
-    <meta property="og:title" content="Google Maps for Developers – Complete Guide">
-    <meta property="og:description" content="Learn the Google Maps JavaScript API with real-world projects. Build apps with markers, directions, clustering, and heatmaps.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://infiproton.github.io/google-maps-course/course.html">
-    <meta property="og:image" content="https://infiproton.github.io/google-maps-course/assets/course-banner.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Google Maps for Developers – Complete Guide">
-    <meta name="twitter:description" content="Master Google Maps JavaScript API with projects and 50% discount.">
-    <meta name="twitter:image" content="https://infiproton.github.io/google-maps-course/assets/course-banner.png">
-
-
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🗺️ Google Maps for Developers - Complete Guide</h1>
-            
-            🎓 Enroll Now in my
-            <a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB" target="_blank">
-            Google Maps for Developers
-            </a>
-            Course 
-
-        </div>
-
-        <div class="content">
-
-            <p>Learn how to build interactive map applications with Google Maps JavaScript API. 
-            From basics to advanced features like clustering, geocoding, directions, and data visualization.</p>
-
-<h2>What You’ll Learn</h2>
-<ul>
-  <li>Embed and customize Google Maps in your websites & apps</li>
-  <li>Use Geocoding, Directions, and Places APIs effectively</li>
-  <li>Display live data with markers, clustering, and heatmaps</li>
-  <li>Build real-world projects step by step</li>
-  <li>Best practices for performance and user experience</li>
-</ul>
-
-<br/>
-            <h2>Course Overview</h2>
-<p>
-Google Maps is everywhere – from food delivery apps to taxi services and real estate platforms. 
-In this course, you’ll learn how to integrate Google Maps into your applications and unlock the 
-full potential of location-based features. We’ll start from the basics and gradually move to 
-advanced topics like clustering, directions, geocoding, and visualizing data with heatmaps.
-</p>
-<p>
-This course is designed for developers who want practical, project-based learning. 
-By the end, you’ll have the skills to build and deploy interactive mapping applications 
-that go beyond just showing a static map.
-</p>
-<br/>
-<h2>Who Should Take This Course?</h2>
-<ul>
-  <li>Web developers who want to add maps to their apps</li>
-  <li>Frontend engineers exploring Google Maps APIs</li>
-  <li>Students & hobbyists interested in location-based apps</li>
-  <li>Anyone building projects involving directions, nearby searches, or location data visualization</li>
-</ul>
-<br/>
-<h2>Course Content</h2>
-<ol>
-  <li>Getting Started with Google Maps API</li>
-  <li>Markers, InfoWindows & Events</li>
-  <li>Working with External Data (Weather, Cities)</li>
-  <li>Places API – Autocomplete, Place Details, Nearby Search</li>
-  <li>Directions & Routing</li>
-  <li>Location Tracking & Data Visualization (Heatmaps, Clustering)</li>
-</ol>
-
-<br/>
-<h2>Your Instructor</h2>
-<p>
-Hi, I’m Harish, a software engineer passionate about maps, APIs, and building real-world 
-applications. I’ve created this course to help developers like you quickly learn and apply 
-Google Maps in your own projects. Along the way, I share best practices and lessons learned 
-from my experience working with APIs and geospatial apps.
-</p>
-
-
-
-            <br/><br/>
-<h2>Start Learning Today</h2>
-<p>Ready to add Google Maps superpowers to your projects? Join now.</p>
-
-
-<a href="https://www.udemy.com/course/google-maps-for-developers/?referralCode=99E7F6A8F5F068D97BCB" target="_blank" class="button">
-   🚀 Enroll Now 
-</a>
-
-        </div>
-
-        <div class="footer">
-            <p>🚀 Interactive Google Maps JavaScript API Learning Examples</p>
-            <p>From basic maps to advanced features with external data integration</p>
-            <p><a href="index.html">Back to home page</a></p>
-        </div>
+    <div class="redirect-message">
+        <h1>🔄 Redirecting...</h1>
+        <p>This page has moved to our new examples page.</p>
+        <p>You will be redirected automatically in a moment.</p>
+        <p>If you are not redirected, <a href="examples.html">click here to continue</a>.</p>
     </div>
 </body>
-</html> 
+</html>
