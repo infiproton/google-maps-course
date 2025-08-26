@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://infiproton.github.io/google-maps-course/sitemap.xml
+
+# Allow all CSS and JS files for proper rendering
+Allow: /styles/
+Allow: /*.css
+Allow: /*.js
+
+# Crawl delay to be respectful to server resources
+Crawl-delay: 1
+
+# Priority pages for crawling
+Allow: /index.html
+Allow: /examples.html
+Allow: /module*/
