@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customize Heatmap</title>
+    <style>
+        #map {
+            height: 90vh;
+            width: 100%;
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        }
+        #controls button {
+            margin: 5px 0;
+            width: 150px;
+            padding: 5px;
+        }
+    </style>
+  </head>
+  <body>    
+    <div id="map"></div>
+    <div id="controls">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change Gradient</button>
+      <button onclick="changeRadius()">Change Radius</button>
+      <button onclick="changeOpacity()">Change Opacity</button>
+    </div>
+    
+    <script>
+        let map, heatmap;
+        async function initMap() {
+            const sf = { lat: 37.7751310, lng: -122.4158246 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 3
+            });
+
+            // Fetch USGS Earthquake data (30 days)
+            const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Prepare Heatmap data
+                    const features = data.features;
+
+                    const heatmapData = features.map((quake) => {
+                        const coords = quake.geometry.coordinates; 
+                        const magnitude = quake.properties.mag || 1;
+                        return {
+                            location: new google.maps.LatLng(coords[1], coords[0]),
+                            weight: magnitude,
+                        };
+                    });
+                    // Create Heatmap
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: heatmapData,
+                        map: map,
+                    });
+                    heatmap.set("radius", 30);
+                    heatmap.set("opacity", 0.7);                    
+
+                }).catch((error) => console.error("Error loading earthquake data:", error));
+       }
+
+       function toggleHeatmap() {
+            heatmap.setMap(heatmap.getMap() ? null : map);
+       }
+
+       function changeGradient() {
+            const gradient = [
+                "rgba(0, 255, 255, 0)",
+                "rgba(0, 255, 255, 1)",
+                "rgba(0, 191, 255, 1)",
+                "rgba(0, 127, 255, 1)",
+                "rgba(0, 63, 255, 1)",
+                "rgba(0, 0, 255, 1)",
+                "rgba(255, 0, 0, 1)",
+            ];
+            heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
+       }
+
+       function changeRadius() {
+            heatmap.set("radius", heatmap.get("radius") === 20 ? 40 : 20);
+       }
+       
+       function changeOpacity() {
+            heatmap.set("opacity", heatmap.get("opacity") === 0.7 ? 0.4 : 0.7);
+       }
+
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=visualization"></script>
+    </body>
+</html>

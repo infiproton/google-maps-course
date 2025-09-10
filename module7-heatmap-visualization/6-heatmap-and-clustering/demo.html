@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Heatmap + Clustering</title>
+    <style>
+        #map {
+            height: 90vh;
+            width: 100%;
+        }
+    </style>
+  </head>
+  <body>    
+    <h3>Earthquake Data: Heatmap + Clustering</h3>
+    <div id="map"></div>
+        
+    <script>
+        let map, heatmap, heatmapData = [];
+        async function initMap() {
+            const sf = { lat: 37.7751310, lng: -122.4158246 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 3
+            });
+
+            // Fetch USGS Earthquake data (30 days)
+            const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+            const markers = [];
+
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Prepare Heatmap data
+                    const features = data.features;
+
+                    features.forEach((quake) => {
+                        const coords = quake.geometry.coordinates;
+                        const magnitude = quake.properties.mag;
+                        const latLng = new google.maps.LatLng(coords[1], coords[0]);
+
+                        // Heatmap point with weight = magnitude
+                        heatmapData.push({ location: latLng, weight: magnitude });
+
+                        // Marker for clustering
+                        const marker = new google.maps.Marker({
+                            position: latLng,
+                            title: `M ${magnitude} - ${quake.properties.place}`,
+                        });
+                        markers.push(marker);
+                    });
+                    // Create Heatmap
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: heatmapData,
+                        map: map,
+                    });
+                    heatmap.set("radius", 30);
+                    heatmap.set("opacity", 0.7);   
+                    
+                    new markerClusterer.MarkerClusterer({ map, markers });
+
+                }).catch((error) => console.error("Error loading earthquake data:", error));
+
+       }       
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=visualization"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    
+</body>
+</html>

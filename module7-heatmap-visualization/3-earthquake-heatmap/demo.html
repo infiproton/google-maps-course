@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Earthquake Heatmap</title>
+    <style>
+        #map {
+            height: 90vh;
+            width: 100%;
+        }
+    </style>
+  </head>
+  <body>    
+    <div id="map"></div>
+    
+    <script>
+        let map;
+        async function initMap() {
+            const sf = { lat: 37.7751310, lng: -122.4158246 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 3
+            });
+
+            // Fetch USGS Earthquake data (30 days)
+            const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Prepare Heatmap data
+                    const features = data.features;
+
+                    const heatmapData = features.map((quake) => {
+                        const coords = quake.geometry.coordinates; 
+                        const magnitude = quake.properties.mag || 1;
+                        return {
+                            location: new google.maps.LatLng(coords[1], coords[0]),
+                            weight: magnitude,
+                        };
+                    });
+                    // Create Heatmap
+                    const heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: heatmapData,
+                        map: map,
+                    });
+                    heatmap.set("radius", 30);
+                    heatmap.set("opacity", 0.7);                    
+
+                }).catch((error) => console.error("Error loading earthquake data:", error));
+            
+            
+       }
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=visualization"></script>
+    </body>
+</html>

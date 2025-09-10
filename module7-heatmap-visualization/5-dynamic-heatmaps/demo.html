@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic Heatmaps</title>
+    <style>
+        #map {
+            height: 90vh;
+            width: 100%;
+        }
+        #controls {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        }
+        #controls button, #controls input { margin: 4px 0; }
+    </style>
+  </head>
+  <body>    
+    <div id="map"></div>
+    <div id="controls">
+      <button id="add-point">Add Random Quake</button><br><br>
+      <label>
+        Min Magnitude: <span id="mag-label">0.0</span>
+      </label><br>
+      <input type="range" id="mag-slider" min="0" max="6" step="0.1" value="0">
+    </div>
+        
+    <script>
+        let map, heatmap, heatmapData;
+        async function initMap() {
+            const sf = { lat: 37.7751310, lng: -122.4158246 }; // SF
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: sf,
+                zoom: 3
+            });
+
+            // Fetch USGS Earthquake data (30 days)
+            const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Prepare Heatmap data
+                    const features = data.features;
+
+                    heatmapData = features.map((quake) => {
+                        const coords = quake.geometry.coordinates; 
+                        const magnitude = quake.properties.mag || 1;
+                        return {
+                            location: new google.maps.LatLng(coords[1], coords[0]),
+                            weight: magnitude,
+                        };
+                    });
+                    // Create Heatmap
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: heatmapData,
+                        map: map,
+                    });
+                    heatmap.set("radius", 30);
+                    heatmap.set("opacity", 0.7);                    
+
+                }).catch((error) => console.error("Error loading earthquake data:", error));
+
+                document.getElementById("mag-slider").addEventListener("input", applyFilter);
+                document.getElementById("add-point").addEventListener("click", addRandomQuake);
+       }
+
+       function applyFilter() {
+            const minMag = parseFloat(document.getElementById("mag-slider").value);
+            document.getElementById("mag-label").textContent = minMag.toFixed(1);
+
+            const filteredData = heatmapData.filter(p => p.weight >= minMag);
+            heatmap.setData(filteredData);
+       }
+
+       function addRandomQuake() {
+            const lat = 20 + (Math.random() - 0.5) * 100;
+            const lng = (Math.random() - 0.5) * 360;
+
+            const point = { location: new google.maps.LatLng(lat, lng), weight: 7 };
+            heatmapData.push(point);
+            heatmap.getData().push(point); 
+       }
+
+
+
+       
+    </script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD02SGgtjMrBmRLSR79u81NoJrWVTGgqak&callback=initMap&libraries=visualization"></script>
+    </body>
+</html>
